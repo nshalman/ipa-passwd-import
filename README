@@ -1,0 +1,13 @@
+This is very very crude and assumes that your passwd GECOS field only contains "Firstname Lastname" and nothing else.
+It is only compatible with FreeIPA 1.2 (and possible earlier), but not v2.
+
+To use:
+
+1. Copy /etc/passwd and /etc/group to the current directory.
+2. Clean them up so that they only contain the data you want to import.
+3. Run migrate.py and look at the output to see if it makes sense.
+4. Change DEBUG to False and run migrate.py again
+5. Run "getent passwd" and "getent group" to further verify
+6. Fork this project on github, make it better, and let me know about it.
+
+-nshalman
