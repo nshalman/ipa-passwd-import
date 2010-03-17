@@ -11,8 +11,15 @@ def ipa_adduser(uid, gid, gecos, homedir, shell, username):
 	print " ".join(command)
 	subprocess.call(command)
 
+def ipa_moduser(username, gid):
+	command = ['ipa-moduser', '--setattr', 'gidnumber=%s' % gid,\
+	username]
+	print " ".join(command)
+	subprocess.call(command)
+
 passwd_reader = csv.reader( open('passwd'), delimiter=':')
 
 for entry in passwd_reader:
 	username,password,uid,gid,gecos,homedir,shell = entry
 	ipa_adduser(uid, gid, gecos, homedir, shell, username)
+	ipa_moduser(username, gid)
